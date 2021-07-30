@@ -45,7 +45,7 @@ app.post('/iin',(req, res)=>{
     .then(async function (response) {
     //   let jsonData =await xmlToJson(response.data)
     //   let data =  jsonData['DataSet']['diffgram']['NMFIISERVICES']
-      res.send({response, message :"yes"})
+      res.send(response.data)
     })
     .catch(function (error) {
       console.log(error)
