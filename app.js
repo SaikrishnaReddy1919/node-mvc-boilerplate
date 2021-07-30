@@ -43,9 +43,9 @@ app.post('/iin',(req, res)=>{
 
   axios(config)
     .then(async function (response) {
-      let jsonData =await xmlToJson(response.data)
-      let data =  jsonData['DataSet']['diffgram']['NMFIISERVICES']
-      res.send({jsonData, message :"yes"})
+    //   let jsonData =await xmlToJson(response.data)
+    //   let data =  jsonData['DataSet']['diffgram']['NMFIISERVICES']
+      res.send({response, message :"yes"})
     })
     .catch(function (error) {
       console.log(error)
