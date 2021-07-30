@@ -1,6 +1,5 @@
 const express = require('express');
 const chalk = require('chalk');
-const { initConnection } = require('./utils/mongoUtil');
 require('dotenv').config()
 
 // user routes
@@ -16,6 +15,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 
+app.get('/test',(req, res)=>{
+    res.send({message :"hey"})
+})
 // user auth routes
 app.use('/api', userRoutes)
     // other routes goes here.
@@ -25,6 +27,4 @@ app.use('/api', userRoutes)
 // start server
 app.listen(PORT, () => {
     console.log(chalk.green.inverse.bold(`Express app listening on.........PORT :  ${PORT}`))
-    console.log(chalk.blue.bold("Connecting to mongodb..."))
-    initConnection()
 })
