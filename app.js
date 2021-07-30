@@ -14,13 +14,16 @@ const PORT = process.env.PORT || 4500
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+
+app.get("/",(req, res)=>{
+    res.send("<h1>Saikrishna Redyy</h1>")
+})
 app.get('/test',(req, res)=>{
     res.send({message :"hey"})
 })
 // user auth routes
 app.use('/api', userRoutes)
     // other routes goes here.
-
 
 
 // start server
