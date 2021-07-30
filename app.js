@@ -1,7 +1,7 @@
 const express = require('express');
 const chalk = require('chalk');
 require('dotenv').config()
-
+const axios = require('axios')
 // user routes
 const userRoutes = require('./routes/user.route')
 
