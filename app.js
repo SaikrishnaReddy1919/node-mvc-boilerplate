@@ -18,6 +18,40 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/",(req, res)=>{
     res.send("<h1>Saikrishna Redyy</h1>")
 })
+
+app.post('/iin',(req, res)=>{
+    console.log(req.body)
+    const iin = req.body.iin
+  const xml = `
+    <NMFIIService>
+    <service_request>
+        <appln_id>${process.env.NSE_APPL_ID}</appln_id>
+        <password>${process.env.NSE_PASSWORD}</password>
+        <broker_code>${process.env.NSE_BORKER_CODE}</broker_code>
+        <iin>${iin}</iin>
+    </service_request>
+</NMFIIService>
+`
+  const config = {
+    method: 'post',
+    url: 'https://www.nsenmf.com/NMFIITrxnService/NMFTrxnService/IINDETAILS',
+    headers: {
+      'Content-Type': 'application/xml',
+    },
+    data: xml
+  }
+
+  axios(config)
+    .then(async function (response) {
+      let jsonData =await xmlToJson(response.data)
+      let data =  jsonData['DataSet']['diffgram']['NMFIISERVICES']
+      successResponse(res, data)
+    })
+    .catch(function (error) {
+      console.log(error)
+      errorResponse(res, error)
+    })
+})
 app.get('/test',(req, res)=>{
     res.send({message :"hey"})
 })
