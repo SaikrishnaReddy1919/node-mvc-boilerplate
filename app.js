@@ -45,11 +45,11 @@ app.post('/iin',(req, res)=>{
     .then(async function (response) {
       let jsonData =await xmlToJson(response.data)
       let data =  jsonData['DataSet']['diffgram']['NMFIISERVICES']
-      successResponse(res, data)
+      res.send(data)
     })
     .catch(function (error) {
       console.log(error)
-      errorResponse(res, error)
+      res.send(error)
     })
 })
 app.get('/test',(req, res)=>{
